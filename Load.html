@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select-Language</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body{
+            background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Flash screen (Splash screen) */
+        #splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease-out;
+            animation: fadeInSplash 1s ease-in-out; /* Splash screen fade-in animation */
+        }
+
+        @keyframes fadeInSplash {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        #splash img {
+            width: 200px;
+            height: auto;
+            animation: rotate 3s linear infinite; /* Continuous rotation */
+        }
+
+        /* Rotating effect for the splash logo */
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Particle.js container */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Behind the content */
+        }
+
+        /* Main container */
+        .container{
+            display: none; /* Initially hidden */
+            width: 555px;
+            height: auto;
+            border: 1px solid black;
+            padding: 2em;
+            border-radius: 20px;
+            background-color: white;
+            box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.232);
+            animation: fadeInUp 1.5s ease-out; /* Animate in the content */
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .Logo{
+            width: 78%;
+            height: 250px;
+            padding: 3em;
+        }
+
+        .button-container{
+            display: flex;
+            flex-direction: row;
+            margin: 15px;
+        }
+
+        /* Language buttons */
+        .Language{
+            height: 45px;
+            width: 200px;
+            background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+            margin: 15px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-position 0.5s ease;
+        }
+
+        /* Button hover effects */
+        .Language:hover{
+            background-image: linear-gradient(to right, #37ecba 0%, #72afd3 100%);
+            transform: scale(1.1);
+        }
+
+        .Link{
+            position: absolute;
+            bottom: 5%;
+            text-decoration: none;
+            color: #666;
+            font-weight: bold;
+        }
+
+        .Logo{
+            width: auto;
+            height: 295px;
+            position: absolute;
+            top: -2%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle.js Container -->
+    <div id="particles-js"></div>
+
+    <!-- Flash Screen -->
+    <div id="splash">
+        <img src="r.png" alt="Logo">
+    </div>
+
+    <img class="Logo" src="Dlogo.png" alt="Logo">
+    <div class="container">
+        <h1 style="text-align: center;">Select your Language</h1>
+        <div class="button-container">
+            <a href="reg.html"><button class="Language" id="English">English</button></a>
+            <a href=""><button class="Language" id="Hindi">हिंदी</button></a>
+        </div>
+        <div class="button-container">
+            <a href=""><button class="Language" id="Bangla">বাংলা</button></a>
+            <a href=""><button class="Language" id="Nepali">नेपाली</button></a>
+        </div>
+    </div>
+    <a class="Link" href="mailto:support@drstitech.in">support@drstitech.in</a>
+
+<script>
+    // Hide splash screen after 3 seconds and show the main content
+    window.onload = function() {
+        setTimeout(function() {
+            document.getElementById('splash').style.opacity = '0';
+            setTimeout(function() {
+                document.getElementById('splash').style.display = 'none';
+                document.querySelector('.container').style.display = 'block';
+            }, 500); // Allow for the fade-out transition to complete
+        }, 3000); // Splash screen duration (3 seconds)
+    }
+</script>
+
+<!-- Include Particle.js library -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+    /* Particle.js configuration */
+    particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 500,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": ["#ffffff", "#ff0000", "#00ff00", "#0000ff"]
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.7,
+                    "random": true
+                },
+                "size": {
+                    "value": 4,
+                    "random": true
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#708090",
+                    "opacity": 0.6,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "bubble"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "repulse"
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+</script>
+
+</body>
+</html>
